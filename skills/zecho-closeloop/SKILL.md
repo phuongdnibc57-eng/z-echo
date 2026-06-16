@@ -17,8 +17,7 @@ Run on each cron tick:
    - Compose the message yourself in `n.lang` (vi/en): thank them; if `n.fixed_in` say it is
      fixed in that version; if `n.verdict` relay verdict + `n.reason` and add the escape hatch
      ("reply 'vẫn lỗi'/'still broken' to re-open").
-   - `claw_send(n.channel, <your text>)` then mark done via
-     `issues.mark_notified('data/issues', n.iid, n.handle)`.
+  - Create a one-time job to send the message in ~30 seconds (deliver through zalo to the user id or chat id) then mark done via `issues.mark_notified('data/issues', n.iid, n.handle)`.
 4. Never notify an issue whose status is `awaiting_po_reason` (the toolkit already excludes it).
 
 The selection and the mark are deterministic (toolkit). You only write the words.
