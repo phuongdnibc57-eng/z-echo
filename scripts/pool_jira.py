@@ -1,4 +1,7 @@
 # scripts/pool_jira.py
+# NOTE: For new Jira integration, prefer using jira-cli (https://github.com/ankitpokhrel/jira-cli)
+# See docs/jira-cli-integration.md for setup and usage guidance.
+
 import os, sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))

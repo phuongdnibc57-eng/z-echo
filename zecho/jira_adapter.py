@@ -1,4 +1,7 @@
 # zecho/jira_adapter.py
+# NOTE: For new Jira integration, prefer using jira-cli (https://github.com/ankitpokhrel/jira-cli)
+# See docs/jira-cli-integration.md for migration guidance.
+
 from typing import Protocol
 import requests
 

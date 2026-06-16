@@ -32,7 +32,7 @@ must-be-correct mutation (id allocation, freq bump, reporter append). Proactive 
 4. SYNTHESIZE — for `new`: write `short_desc` (English, describe the underlying problem),
    pick `component`, `theme`, `severity`; compute priority via the documented formula.
 5. ROUTE — read `data/ownership.md`; map `component` → squad/group/oncall.
-6. POOL — create or +1 the issue file; append the reporter; (Jira optional via pool_jira.py).
+6. POOL — create or +1 the issue file; append the reporter; (Jira optional via jira-cli; see [jira-cli-integration.md](../../docs/jira-cli-integration.md)).
 
 ## Slot templates (information-gap)
 | issue_type | required slots |

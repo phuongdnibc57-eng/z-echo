@@ -14,4 +14,5 @@ python -m pytest -q
 python scripts/seed.py data
 ```
 See `docs/specs/2026-06-16-zecho-voc-agent-design.md` (spec), `docs/architecture.md`,
-`scenarios/README.md` (acceptance), `cron.md` (schedule), `skills/*/SKILL.md` (agent prompts).
+`scenarios/README.md` (acceptance), `cron.md` (schedule), `skills/*/SKILL.md` (agent prompts),
+`docs/jira-cli-integration.md` (optional Jira sync via jira-cli).

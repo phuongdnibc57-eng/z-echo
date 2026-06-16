@@ -8,9 +8,10 @@ description: >
 # Z-Echo — close-the-loop
 
 Run on each cron tick:
-1. Reflect external state (optional Jira) into the file pool:
-   `python -c "from zecho import closeloop, scripts; ..."` — use `closeloop.reflect_jira(issues_dir, adapter)`.
-   (With no Jira, this is a no-op; verdicts arrive via the zecho-verdict skill.)
+1. Reflect external state (optional Jira via jira-cli) into the file pool:
+   Use `jira issue list --jql 'project=... AND status CHANGED TO (...) AFTER -5m' --plain` to query recently changed issues.
+   Update the pool with new statuses and `fixed_in` versions. (With no Jira, this is a no-op; verdicts arrive via the zecho-verdict skill.)
+   See [docs/jira-cli-integration.md](../../docs/jira-cli-integration.md) for setup.
 2. Get the deterministic worklist (the toolkit decides WHO, never you):
    `from zecho import closeloop; pend = closeloop.pending_notifications('data/issues', lang_of=...)`
 3. For EACH `Notification n` in `pend`:
