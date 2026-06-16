@@ -15,9 +15,9 @@ Run once per day:
 2. For EACH `report` with non-empty `report["reasons"]`:
    - Write a short **narrative** for `report["items"]` (what's new/spiking/recurring, what to
      ack, trend vs yesterday) — not a flat list.
-   - Create a one-time job to deliver the narrative to `report["squad"].feedback_group_id` after ~30 seconds.
+   - Invoke the `zecho-send` skill with `chatId=report["squad"].feedback_group_id` and the narrative, scheduling a one-time cron job for delivery in ~10 seconds.
    - Squads with empty `reasons` → **stay silent** (do not post).
 3. Write a PO rollup from `all_items` (top themes by volume, new vs recurring, deltas) and
-   deliver to the PO group.
+   invoke the `zecho-send` skill with `chatId='zalo:group:po'` and the rollup, scheduling a one-time cron job for delivery in ~10 seconds.
 
 Template fallback for testing: `digest.run('data/issues','data/ownership.md','zalo:group:po')`.
