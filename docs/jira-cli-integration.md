@@ -41,10 +41,19 @@ jira issue create \
   -tBug \
   -s"<short_desc>" \
   -b"<body>" \
-  --no-input
+  --no-input \
+  --raw
 ```
 
-The command returns the created issue key. Capture it and save to the pool's `jira_key` field.
+The `--raw` flag emits JSON output. Parse the returned JSON to extract the created issue `key` and the issue URL from `self`:
+
+```bash
+output=$(jira issue create -tBug -s"$summary" -b"$body" --no-input --raw)
+key=$(jq -r '.key' <<<"$output")
+link=$(jq -r '.self' <<<"$output")
+```
+
+Use `key` as the issue file name / identifier and store `jira_key` in frontmatter. Store `link` as `jira_link` for later reporting.
 
 ### Query Recently Changed Issues
 
@@ -74,11 +83,13 @@ jira issue list \
 
 ## Integration Flow
 
-1. **Triage pool → Jira**: After creating an issue file in `data/issues/ISS-xxxx.md`, run:
+1. **Triage pool → Jira**: Before writing the issue file, create the Jira bug with:
    ```bash
-   jira issue create -tBug -s"<short_desc>" -b"<body>" --no-input
+   output=$(jira issue create -tBug -s"<short_desc>" -b"<body>" --no-input --raw)
+   key=$(jq -r '.key' <<<"$output")
+   link=$(jq -r '.self' <<<"$output")
    ```
-   Capture the returned key and update the issue file's `jira_key` field.
+   Use `key` as the issue file name / identifier, set `jira_key`, and save `jira_link` in frontmatter.
 
 2. **Jira → Pool (sync changes)**: At cron intervals, run:
    ```bash
