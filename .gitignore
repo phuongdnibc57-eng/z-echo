@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# Runtime pool state (seeded/generated). Source of truth for the schema lives in
+# tests/fixtures/ and data/ownership.md (tracked); these dirs are runtime artifacts.
+/data/issues/
+/data/feedback/
+/data/kb/
+/data/notifications.log
+*.egg-info/
+
+.DS_Store
