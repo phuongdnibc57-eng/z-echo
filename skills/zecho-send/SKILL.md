@@ -14,7 +14,8 @@ Inputs:
 
 Behavior:
 1. Validate that `chatId` and `message` are present.
-2. Use the cron tool to create a one-time job scheduled for ~10 seconds in the future.
-3. The scheduled job should deliver the `message` to the `zalo` channel with `chatId`
+2. If `chatId` starts with `"zalo:"`, trim that prefix.
+3. Use the cron tool to create a one-time job scheduled for ~10 seconds in the future.
+4. The scheduled job should deliver the `message` to the `zalo` channel with the trimmed `chatId`
 
 This skill does not compose text or decide routing — it simply schedules one outbound delivery from the agent.
